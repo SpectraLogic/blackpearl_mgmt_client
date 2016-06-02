@@ -11,6 +11,8 @@
  * **************************************************************************
  */
 
+apply from: "${rootProject.projectDir}/gradle/publishing.gradle"
+
 jar {
     from sourceSets.main.allJava
 }
