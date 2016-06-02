@@ -28,7 +28,7 @@ public class User {
     @JsonProperty("default_data_policy_id")
     private UUID defaultDataPolicyId;
     @JsonProperty("global_bucket_acl_permissions")
-    private List<UUID> globalBucketAclPermissions;
+    private List<String> globalBucketAclPermissions;
     @JsonProperty("global_data_policy_acl_enabled")
     private boolean globalDataPolicyAclEnabled;
 
@@ -112,11 +112,11 @@ public class User {
         this.defaultDataPolicyId = defaultDataPolicyId;
     }
 
-    public List<UUID> getGlobalBucketAclPermissions() {
+    public List<String> getGlobalBucketAclPermissions() {
         return globalBucketAclPermissions;
     }
 
-    public void setGlobalBucketAclPermissions(final List<UUID> globalBucketAclPermissions) {
+    public void setGlobalBucketAclPermissions(final List<String> globalBucketAclPermissions) {
         this.globalBucketAclPermissions = globalBucketAclPermissions;
     }
 

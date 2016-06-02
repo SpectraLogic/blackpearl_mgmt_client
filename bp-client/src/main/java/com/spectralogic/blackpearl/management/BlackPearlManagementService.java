@@ -29,7 +29,7 @@ public interface BlackPearlManagementService {
     @GET("users")
     Call<Users> users();
 
-    @GET("keys")
+    @GET("ds3/keys")
     Call<UserKeys> key(@Query("user_id") int userId);
 
     @GET("logs")
