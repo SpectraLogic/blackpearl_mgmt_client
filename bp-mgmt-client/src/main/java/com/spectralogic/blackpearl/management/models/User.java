@@ -21,7 +21,7 @@ import java.util.UUID;
 public class User {
 
     @JsonProperty("created_at")
-    private long createdAt;
+    private String createdAt;
     @JsonProperty("email")
     private String email;
     @JsonProperty("id")
@@ -45,11 +45,11 @@ public class User {
     @JsonProperty("global_data_policy_acl_enabled")
     private boolean globalDataPolicyAclEnabled;
 
-    public long getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(final long createdAt) {
+    public void setCreatedAt(final String createdAt) {
         this.createdAt = createdAt;
     }
 
