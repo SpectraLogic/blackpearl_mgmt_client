@@ -33,7 +33,7 @@ public class User {
     @JsonProperty("session_timeout")
     private int sessionTimeout;
     @JsonProperty("updated_at")
-    private long updatedAt;
+    private String updatedAt;
     @JsonProperty("username")
     private String username;
     @JsonProperty("remote_support_enabled")
@@ -93,11 +93,11 @@ public class User {
         this.sessionTimeout = sessionTimeout;
     }
 
-    public long getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(final long updatedAt) {
+    public void setUpdatedAt(final String updatedAt) {
         this.updatedAt = updatedAt;
     }
 
