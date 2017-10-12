@@ -11,5 +11,5 @@
  * **************************************************************************
  */
 
-include 'bp-mgmt-client'
+include 'bp-mgmt-client', 'integration'
 
