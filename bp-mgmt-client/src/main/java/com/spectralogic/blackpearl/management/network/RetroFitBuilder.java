@@ -19,6 +19,7 @@ import okhttp3.ConnectionSpec;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
 import javax.net.ssl.SSLContext;
@@ -65,7 +66,7 @@ public final class RetroFitBuilder {
         setProxy(httpClient);
 
         httpClient.addInterceptor(new LoggingInterceptor());
-        httpClient.hostnameVerifier(((s, sslSession) -> true));
+        httpClient.hostnameVerifier((s, sslSession) -> true);
         httpClient.connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.CLEARTEXT));
         httpClient.sslSocketFactory(createSslSocketFactory());
 
@@ -84,6 +85,7 @@ public final class RetroFitBuilder {
         return new Retrofit.Builder()
                     .baseUrl(finalUrl)
                     .addConverterFactory(JacksonConverterFactory.create(mapper))
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .client(client)
                     .build();
     }

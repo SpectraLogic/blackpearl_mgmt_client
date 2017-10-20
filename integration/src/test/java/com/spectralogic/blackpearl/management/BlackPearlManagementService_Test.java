@@ -13,11 +13,11 @@
 
 package com.spectralogic.blackpearl.management;
 
-import com.spectralogic.blackpearl.management.models.User;
-import com.spectralogic.blackpearl.management.models.Users;
+import com.spectralogic.blackpearl.management.models.*;
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import retrofit2.Call;
 
 import java.io.IOException;
 import java.util.List;
@@ -36,7 +36,6 @@ public class BlackPearlManagementService_Test {
         final String password = getEnvVar("BP_MGMT_PASSWORD");
 
         managementService = BlackPearlManagementService.getInstance(endpoint, username, password);
-
     }
 
     private static String getEnvVar(final String key) throws Exception {
@@ -49,19 +48,74 @@ public class BlackPearlManagementService_Test {
 
     @Test
     public void getUsers() throws IOException {
-        final Call<Users> users = managementService.users();
-        final Users body = users.execute().body();
+        final Single<Users> users = managementService.users();
+        final List<User> userList = users.map(Users::getUsers).blockingGet();
 
-        assertThat(body).isNotNull();
-        assertThat(containsAdminUser(body.getUsers())).isTrue();
+        assertThat(userList).isNotNull();
+        assertThat(userList.isEmpty()).isFalse();
+        assertThat(containsAdminUser(userList)).isTrue();
     }
 
+    @Test
+    public void getActivationKeys() {
+        final List<ActivationKey> activationKeys = managementService.activationKeys().map(ActivationKeys::getKeys).blockingGet();
 
-    private boolean containsAdminUser(final List<User> users) {
-        return users.stream().anyMatch(user -> {
-            final String userName = user.getName();
+        assertThat(activationKeys).isNotNull();
+        assertThat(activationKeys).isNotEmpty();
+
+        assertThat(activationKeys.stream().map(ActivationKey::getKeyType).anyMatch(keyType -> keyType.equals("em_s3"))).isTrue();
+    }
+
+    @Test
+    public void getUserKeys() {
+        final Integer adminUserId = managementService.users()
+                .map(Users::getUsers)
+                .flatMapObservable(Observable::fromIterable)
+                .filter(BlackPearlManagementService_Test::isAdminOrSpectraUser)
+                .map(User::getId)
+                .firstOrError()
+                .blockingGet();
+
+        final List<UserKey> userKeys = managementService.key(adminUserId).map(UserKeys::getKeys).blockingGet();
+
+        assertThat(userKeys).isNotNull();
+        assertThat(userKeys).isNotEmpty();
+
+        final UserKey userKey = userKeys.get(0);
+
+        assertThat(userKey).isNotNull();
+        assertThat(userKey.getAuthId()).isNotBlank();
+        assertThat(userKey.getSecretKey()).isNotBlank();
+    }
+
+    @Test
+    public void getNetworkInterfaces() {
+        final NetworkInterface data = managementService.networkInterfaces()
+                .map(NetworkInterfaces::getNetworkInterfaceList)
+                .flatMapObservable(Observable::fromIterable)
+                .doOnNext(ni -> {
+                    System.out.println(ni.getName());
+                    System.out.println(ni.getLaggId());
+                    System.out.println(ni.getLinkStatus());
+                })
+                .filter(ni -> ni.getName().contains("Data"))
+                .filter(ni -> ni.getAddresses() != null)
+                .firstOrError()
+                .blockingGet();
+
+
+        data.getAddresses().forEach(System.out::println);
+
+        assertThat(data).isNotNull();
+        assertThat(data.getAddresses()).isNotEmpty();
+    }
+
+    private static boolean containsAdminUser(final List<User> users) {
+        return users.stream().anyMatch(BlackPearlManagementService_Test::isAdminOrSpectraUser);
+    }
+
+    private static boolean isAdminOrSpectraUser(final User user) {
+        final String userName = user.getName();
             return userName.equalsIgnoreCase("Administrator") || userName.equalsIgnoreCase("spectra");
-        });
     }
 }
-

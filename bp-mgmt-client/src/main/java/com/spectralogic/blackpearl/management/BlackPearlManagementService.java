@@ -15,8 +15,8 @@ package com.spectralogic.blackpearl.management;
 
 import com.spectralogic.blackpearl.management.models.*;
 import com.spectralogic.blackpearl.management.network.RetroFitBuilder;
+import io.reactivex.Single;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.http.*;
 
@@ -24,36 +24,39 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
 public interface BlackPearlManagementService {
+    @GET("activation_keys")
+    Single<ActivationKeys> activationKeys();
+
     @GET("network_interfaces")
-    Call<NetworkInterfaces> networkInterfaces();
+    Single<NetworkInterfaces> networkInterfaces();
 
     @GET("cpus")
-    Call<Cpus> cpus();
+    Single<Cpus> cpus();
 
     @GET("fans")
-    Call<Fans> fans();
+    Single<Fans> fans();
 
     @GET("power_supplies")
-    Call<PowerSupplies> powerSupplies();
+    Single<PowerSupplies> powerSupplies();
 
     @GET("cases")
-    Call<Cases> cases();
+    Single<Cases> cases();
 
     @GET("users")
-    Call<Users> users();
+    Single<Users> users();
 
     @GET("ds3/keys")
-    Call<UserKeys> key(@Query("user_id") int userId);
+    Single<UserKeys> key(@Query("user_id") int userId);
 
     @GET("logs")
-    Call<Logs> logSets();
+    Single<Logs> logSets();
 
     @POST("logs")
-    Call<LogCreateResponse> createLogSet(@Body final LogCreator logCreator);
+    Single<LogCreateResponse> createLogSet(@Body final LogCreator logCreator);
 
     @GET("logs/{logSetName}")
     @Streaming
-    Call<ResponseBody> getLogSet(@Path("logSetName") final String logSetName);
+    Single<ResponseBody> getLogSet(@Path("logSetName") final String logSetName);
 
     static BlackPearlManagementService getInstance(final String endpoint, final String username, final String password) {
         return getInstance(endpoint, username, password, true);
