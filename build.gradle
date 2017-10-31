@@ -22,7 +22,7 @@ buildscript {
 
 allprojects {
     group = 'com.spectralogic.ds3'
-    version = '3.5.0'
+    version = '3.5.0-SNAPSHOT'
 }
 
 subprojects {
