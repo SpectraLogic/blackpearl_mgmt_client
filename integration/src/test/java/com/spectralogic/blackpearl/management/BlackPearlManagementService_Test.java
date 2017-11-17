@@ -110,6 +110,20 @@ public class BlackPearlManagementService_Test {
         assertThat(data.getAddresses()).isNotEmpty();
     }
 
+    @Test
+    public void getVersionFromNode() {
+        final String versionString = managementService.nodes()
+                .map(Nodes::getNodes)
+                .flatMapObservable(Observable::fromIterable)
+                .filter(node -> node.getName().equals("blackpearl") || node.getName().equals("black-pearl"))
+                .firstOrError()
+                .map(Node::getSoftwareVersion)
+                .blockingGet();
+
+        assertThat(versionString).startsWith("3.5.");
+    }
+
+
     private static boolean containsAdminUser(final List<User> users) {
         return users.stream().anyMatch(BlackPearlManagementService_Test::isAdminOrSpectraUser);
     }

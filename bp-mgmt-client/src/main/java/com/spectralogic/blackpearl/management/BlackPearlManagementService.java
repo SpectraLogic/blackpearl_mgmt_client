@@ -45,6 +45,9 @@ public interface BlackPearlManagementService {
     @GET("users")
     Single<Users> users();
 
+    @GET("nodes")
+    Single<Nodes> nodes();
+
     @GET("ds3/keys")
     Single<UserKeys> key(@Query("user_id") int userId);
 
