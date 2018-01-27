@@ -17,3 +17,4 @@ atlassian-ide-plugin.xml
 bin/
 *.log
 *.rc
+.gradletasknamecache
