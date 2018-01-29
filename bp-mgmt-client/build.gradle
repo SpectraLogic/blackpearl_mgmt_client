@@ -12,6 +12,7 @@
  */
 
 apply from: "${rootProject.projectDir}/gradle/publishing.gradle"
+apply plugin: 'com.github.johnrengelman.shadow'
 
 jar {
     from sourceSets.main.allJava
