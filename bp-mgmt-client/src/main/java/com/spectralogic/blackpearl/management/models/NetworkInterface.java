@@ -49,9 +49,7 @@ public class NetworkInterface {
     @JsonProperty("up")
     private boolean up;
     @JsonProperty("addresses")
-    private List<String> addresses;
-    @JsonProperty("hotpair_addresses")
-    private String hotpairAddresses;
+    private List<Address> addresses;
     @JsonProperty("created_at")
     private String createdAt;
     @JsonProperty("updated_at")
@@ -189,20 +187,12 @@ public class NetworkInterface {
         this.up = up;
     }
 
-    public List<String> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(final List<String> addresses) {
+    public void setAddresses(final List<Address> addresses) {
         this.addresses = addresses;
-    }
-
-    public String getHotpairAddresses() {
-        return hotpairAddresses;
-    }
-
-    public void setHotpairAddresses(final String hotpairAddresses) {
-        this.hotpairAddresses = hotpairAddresses;
     }
 
     public String getCreatedAt() {

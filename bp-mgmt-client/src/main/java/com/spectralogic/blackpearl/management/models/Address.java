@@ -11,9 +11,29 @@
  * **************************************************************************
  */
 
-apply from: "${rootProject.projectDir}/gradle/publishing.gradle"
-apply plugin: 'com.github.johnrengelman.shadow'
+package com.spectralogic.blackpearl.management.models;
 
-jar {
-    from sourceSets.main.allJava
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+public class Address {
+    @JsonProperty("address")
+    private final String address;
+
+    @JsonProperty("autoconf")
+    private final boolean autoconf;
+
+    @JsonCreator
+    public Address(@JsonProperty("address") final String address, @JsonProperty("autoconf") final boolean autoconf) {
+        this.address = address;
+        this.autoconf = autoconf;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public boolean isAutoconf() {
+        return autoconf;
+    }
 }

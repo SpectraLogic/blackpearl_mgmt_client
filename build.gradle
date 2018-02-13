@@ -17,12 +17,13 @@ buildscript {
     }
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
     }
 }
 
 allprojects {
     group = 'com.spectralogic.ds3'
-    version = '3.5.0'
+    version = '4.1.0-SNAPSHOT'
 }
 
 subprojects {
@@ -39,7 +40,7 @@ subprojects {
     sourceCompatibility = JavaVersion.VERSION_1_8
 
     dependencies {
-        compile "io.reactivex.rxjava2:rxjava:2.1.6"
+        compile "io.reactivex.rxjava2:rxjava:2.1.9"
         compile 'org.slf4j:slf4j-api:1.7.25'
         compile 'com.squareup.retrofit2:retrofit:2.3.0'
         compile 'com.squareup.retrofit2:converter-jackson:2.3.0'
@@ -53,7 +54,7 @@ subprojects {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.2.1'
+    gradleVersion = '4.5'
 }
 
 project(':integration') {
