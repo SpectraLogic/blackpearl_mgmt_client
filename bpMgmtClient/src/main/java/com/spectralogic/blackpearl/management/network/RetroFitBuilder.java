@@ -41,6 +41,8 @@ public final class RetroFitBuilder {
 
     private final static String NO_API_PREFIX = "no_api_prefix";
 
+    private final static TrustEveryoneManager trustEveryoneManager = new TrustEveryoneManager();
+
     public static Retrofit build(final String url, final String username, final String password) throws KeyManagementException, NoSuchAlgorithmException {
         return build(url, username, password, addPrefix());
     }
@@ -68,7 +70,7 @@ public final class RetroFitBuilder {
         httpClient.addInterceptor(new LoggingInterceptor());
         httpClient.hostnameVerifier((s, sslSession) -> true);
         httpClient.connectionSpecs(Arrays.asList(ConnectionSpec.MODERN_TLS, ConnectionSpec.CLEARTEXT));
-        httpClient.sslSocketFactory(createSslSocketFactory());
+        httpClient.sslSocketFactory(createSslSocketFactory(), trustEveryoneManager);
 
         final OkHttpClient client = httpClient.build();
 
@@ -114,7 +116,7 @@ public final class RetroFitBuilder {
 
         // Install the all-trusting trust manager
         final SSLContext sslContext = SSLContext.getInstance("SSL");
-        sslContext.init(null, new TrustManager[]{new TrustEveryoneManager()}, new java.security.SecureRandom());
+        sslContext.init(null, new TrustManager[]{trustEveryoneManager}, new java.security.SecureRandom());
         // Create an ssl socket factory with our all-trusting manager
         return sslContext.getSocketFactory();
     }
