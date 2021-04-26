@@ -42,7 +42,6 @@ subprojects {
 
     dependencies {
         implementation "io.reactivex.rxjava3:rxjava:3.0.4"
-        implementation "io.vertx:vertx-rx-java2:2.1.9"
         implementation 'org.slf4j:slf4j-api:1.7.30'
         implementation 'com.squareup.retrofit2:retrofit:2.9.0'
         implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'
