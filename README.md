@@ -13,20 +13,20 @@ Add the following to your `maven.pom` file
 
 <project>
   ...
-  <repositories>
-    <repository>
-      <id>Spectra-Github</id>
-      <url>http://dl.bintray.com/spectralogic/ds3</url>
-    </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
   ...
     <dependencies>
       ...
-      <dependency>
-        <groupId>com.spectralogic.ds3</groupId>
-        <artifactId>bp-mgmt-client</artifactId>
-        <version>1.0.0</version>
-      </dependency>
+        <dependency>
+            <groupId>com.github.spectralogic</groupId>
+            <artifactId>blackpearl_mgmt_client</artifactId>
+            <version>4.1.1</version>
+        </dependency>
     ...  
     </dependencies>
 </project>
@@ -39,18 +39,15 @@ To include the client into Gradle include the following in the `build.gradle` fi
 
 ```groovy
 
-repositories {
-    ...
-    maven {
-        url 'http://dl.bintray.com/spectralogic/ds3'
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
     }
-    ...
 }
 
 dependencies {
-    ...
-    compile 'com.spectralogic.ds3:bp-mgmt-client:1.0.0'
-    ...
+    implementation 'com.github.spectralogic:blackpearl_mgmt_client:4.1.1'
 }
 
 ```
