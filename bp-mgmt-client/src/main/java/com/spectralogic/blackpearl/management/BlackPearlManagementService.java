@@ -57,6 +57,9 @@ public interface BlackPearlManagementService {
     @POST("logs")
     Single<LogCreateResponse> createLogSet(@Body final LogCreator logCreator);
 
+    @POST("tokens")
+    Single<Token> generateToken(@Body final UserCreds credentials);
+
     @GET("logs/{logSetName}")
     @Streaming
     Single<ResponseBody> getLogSet(@Path("logSetName") final String logSetName);
