@@ -48,15 +48,12 @@ public final class RetroFitBuilder {
     }
 
     public static Retrofit build(final String url, final String username, final String password, final boolean apiPrefix) throws KeyManagementException, NoSuchAlgorithmException {
-        final String authorization = "Basic " + Base64
-                .getEncoder()
-                .encodeToString((username + ":" + password).getBytes(Charset.forName("UTF-8")));
         final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(new TokenInterceptor(url, username, password));
         httpClient.addInterceptor(chain -> {
             final Request original = chain.request();
 
             final Request request = original.newBuilder()
-                    .header("Authorization", authorization)
                     .addHeader("Content-Type", "application/json")
                     .addHeader("Accept", "application/json")
                     .method(original.method(), original.body())
