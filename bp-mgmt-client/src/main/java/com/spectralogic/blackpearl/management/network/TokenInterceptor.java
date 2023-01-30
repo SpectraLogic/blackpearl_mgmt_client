@@ -16,7 +16,7 @@ package com.spectralogic.blackpearl.management.network;
 import com.spectralogic.blackpearl.management.BlackPearlManagementService;
 import com.spectralogic.blackpearl.management.models.Token;
 import com.spectralogic.blackpearl.management.models.UserCreds;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Single;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;

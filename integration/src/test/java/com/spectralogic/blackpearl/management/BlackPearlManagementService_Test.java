@@ -1,6 +1,6 @@
 /*
  * ****************************************************************************
- *   Copyright 2016 Spectra Logic Corporation. All Rights Reserved.
+ *   Copyright 2016-2023 Spectra Logic Corporation. All Rights Reserved.
  *   Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *   this file except in compliance with the License. A copy of the License is located at
  *   http://www.apache.org/licenses/LICENSE-2.0
@@ -14,11 +14,10 @@
 package com.spectralogic.blackpearl.management;
 
 import com.spectralogic.blackpearl.management.models.*;
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import org.junit.BeforeClass;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.util.List;
 

@@ -1,6 +1,6 @@
 /*
  * ****************************************************************************
- *   Copyright 2016 Spectra Logic Corporation. All Rights Reserved.
+ *   Copyright 2023 Spectra Logic Corporation. All Rights Reserved.
  *   Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *   this file except in compliance with the License. A copy of the License is located at
  *   http://www.apache.org/licenses/LICENSE-2.0
@@ -10,9 +10,18 @@
  *   specific language governing permissions and limitations under the License.
  * **************************************************************************
  */
+plugins {
+    java
+}
 
-apply from: "${rootProject.projectDir}/gradle/publishing.gradle"
+dependencies {
+    testImplementation(project(":bp-mgmt-client"))
 
-jar {
-    from sourceSets.main.allJava
+    testImplementation(libs.assertjCore)
+    testImplementation(libs.junit)
+    testImplementation(libs.junitJupiterApi)
+    testImplementation(libs.reactivexRxjava)
+    testImplementation(libs.slf4jSimple)
+
+    testRuntimeOnly(libs.junitVintageEngine)
 }

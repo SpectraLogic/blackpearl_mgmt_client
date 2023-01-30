@@ -15,7 +15,7 @@ package com.spectralogic.blackpearl.management;
 
 import com.spectralogic.blackpearl.management.models.*;
 import com.spectralogic.blackpearl.management.network.RetroFitBuilder;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Single;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.http.*;
