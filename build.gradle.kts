@@ -28,3 +28,8 @@ tasks.withType<JavaCompile>().configureEach {
     sourceCompatibility = JavaVersion.VERSION_16.toString()
     targetCompatibility = JavaVersion.VERSION_16.toString()
 }
+
+tasks.wrapper {
+    // to upgrade the gradle wrapper, bump the version below and run ./gradlew wrapper
+    gradleVersion = "8.0.2"
+}
