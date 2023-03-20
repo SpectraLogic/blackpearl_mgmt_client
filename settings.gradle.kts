@@ -51,7 +51,7 @@ dependencyResolutionManagement {
             library("slf4jSimple", "org.slf4j", "slf4j-simple").versionRef("slf4j")
 
             // gradle plugins
-            plugin("owaspDepCheck","org.owasp.dependencycheck").version("8.0.1")
+            plugin("owaspDepCheck","org.owasp.dependencycheck").version("8.1.2")
             plugin("versions", "com.github.ben-manes.versions").version("0.44.0")
         }
     }
