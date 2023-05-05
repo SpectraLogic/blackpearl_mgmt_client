@@ -13,9 +13,6 @@
 
 rootProject.name = "blackpearl-mgmt-client"
 
-include("bp-mgmt-client")
-include("integration")
-
 dependencyResolutionManagement {
     repositories {
         mavenCentral()
