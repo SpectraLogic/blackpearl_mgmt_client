@@ -14,8 +14,8 @@
 plugins {
     `java-library`
     `maven-publish`
-    alias(libs.plugins.versions)
     alias(libs.plugins.owaspDepCheck)
+    alias(libs.plugins.versions)
 }
 
 group = "com.spectralogic.ds3"
