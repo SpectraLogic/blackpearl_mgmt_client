@@ -11,10 +11,11 @@
  * **************************************************************************
  */
 
-rootProject.name = "blackpearl-mgmt-client"
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention").version("0.5.0")
+}
 
-include("bp-mgmt-client")
-include("integration")
+rootProject.name = "blackpearl-mgmt-client"
 
 dependencyResolutionManagement {
     repositories {
@@ -52,7 +53,7 @@ dependencyResolutionManagement {
 
             // gradle plugins
             plugin("owaspDepCheck","org.owasp.dependencycheck").version("8.1.2")
-            plugin("versions", "com.github.ben-manes.versions").version("0.44.0")
+            plugin("versions", "com.github.ben-manes.versions").version("0.46.0")
         }
     }
 }
