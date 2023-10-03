@@ -12,7 +12,7 @@
  */
 
 plugins {
-    id("org.gradle.toolchains.foojay-resolver-convention").version("0.5.0")
+    id("org.gradle.toolchains.foojay-resolver-convention").version("0.7.0")
 }
 
 rootProject.name = "blackpearl-mgmt-client"
@@ -25,11 +25,11 @@ dependencyResolutionManagement {
         create("libs") {
             version("assert4j", "3.24.2")
             version("hamcrest", "1.3")
-            version("jackson", "2.14.1")
+            version("jackson", "2.15.2")
             version("junit-jupiter", "5.9.2")
             version("junit", "4.13.2")
-            version("okhttp", "4.10.0")
-            version("okio-jvm", "3.3.0")
+            version("okhttp", "4.11.0")
+            version("okio-jvm", "3.5.0")
             version("reactivex", "3.1.6")
             version("retrofit", "2.9.0")
             version("slf4j", "1.7.36")
@@ -52,8 +52,8 @@ dependencyResolutionManagement {
             library("slf4jSimple", "org.slf4j", "slf4j-simple").versionRef("slf4j")
 
             // gradle plugins
-            plugin("owaspDepCheck","org.owasp.dependencycheck").version("8.1.2")
-            plugin("versions", "com.github.ben-manes.versions").version("0.46.0")
+            plugin("owaspDepCheck","org.owasp.dependencycheck").version("8.4.0")
+            plugin("versions", "com.github.ben-manes.versions").version("0.48.0")
         }
     }
 }
